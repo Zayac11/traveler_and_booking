@@ -1,0 +1,47 @@
+@import 'reset';
+@import 'mixins';
+@import './variables/global';
+@import './variables/variables';
+@import '/src/shared/assets/fonts/fonts';
+
+.page-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 0 16px;
+}
+
+.widget-container {
+    background: linear-gradient(135deg, rgb(43 45 52 / 12%) 0%, rgb(43 45 52 / 6%) 52.14%, rgb(43 45 52 / 0.01%) 100%);
+    border: 1px solid rgb(245 247 250 / 6%);
+    box-shadow: 0 1px 1px rgb(9 13 20 / 40%), -4px -4px 8px rgb(224 224 255 / 4%), 8px 8px 24px rgb(9 13 20 / 40%);
+    backdrop-filter: blur(54.3656px);
+    -webkit-backdrop-filter: blur(54.3656px);
+    border-radius: 24px;
+    padding: 24px;
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: $breakpoint-tablet) {
+        padding: 16px;
+    }
+}
+
+.section-title {
+    font-family: 'Druk Cyr', serif;
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+    display: flex;
+}
+
+.swiper-drag-scroll {
+    height: 100%;
+    width: 100%;
+    background: rgb(255 255 255 / 10%);
+    border-radius: 12px;
+}

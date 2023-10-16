@@ -74,6 +74,8 @@ module.exports = {
         'comma-dangle': 'off',
         'operator-linebreak': 'off',
         'react/no-array-index-key': 'warn',
+        'no-unused-vars': 'warn',
         'i18next/no-literal-string': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
     },
 }
