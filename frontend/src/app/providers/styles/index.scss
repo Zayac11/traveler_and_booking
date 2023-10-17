@@ -2,7 +2,7 @@
 @import 'mixins';
 @import './variables/global';
 @import './variables/variables';
-// @import '/src/shared/assets/fonts/fonts';
+@import '../../../shared/assets/fonts/fonts.scss';
 
 .page-wrapper {
     position: relative;
