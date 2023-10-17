@@ -1,3 +1,5 @@
-export { useGetProfile } from './model/api/profileApi';
-export { getInitData } from './model/selectors/getInitData/getInitData';
-export { getProfileData } from './model/selectors/getProfileData/getProfileData';
+export { useGetProfile } from './model/api/profileApi'
+export { getInitData } from './model/selectors/getInitData/getInitData'
+export { getProfileData } from './model/selectors/getProfileData/getProfileData'
+export { profileReducer } from './model/slice/profileSlice'
+export type { ProfileSchema, Profile } from './model/types/Profile'

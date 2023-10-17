@@ -1,5 +1,6 @@
 import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 import { CombinedState } from 'redux'
+import { profileReducer } from '../../../../entities/Profile'
 import { $api, rtkApi } from '../../../../shared/config/api/api'
 import { createReducerManager } from './reducerManager'
 import { StateSchema, ThunkExtraArg } from './StateSchema'
@@ -7,6 +8,7 @@ import { StateSchema, ThunkExtraArg } from './StateSchema'
 export function createReduxStore(initialState?: StateSchema) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         [rtkApi.reducerPath]: rtkApi.reducer,
+        profile: profileReducer,
     }
 
     const reducerManager = createReducerManager(rootReducers)
