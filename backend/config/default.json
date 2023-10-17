@@ -1,4 +1,5 @@
 {
     "port": 8000,
+    "jwtSecret": "asdas7das87das8sa",
     "mongoUri": "mongodb+srv://Zayac11:tdnavwwdWoxyqs7m@cluster0.dlujjgt.mongodb.net/?retryWrites=true&w=majority"
 }
