@@ -1,5 +1,5 @@
 @use 'sass:list';
-@import '/src/app/styles/variables/variables';
+@import './variables/variables.scss';
 
 @mixin custom-scroll {
     &::-webkit-scrollbar {

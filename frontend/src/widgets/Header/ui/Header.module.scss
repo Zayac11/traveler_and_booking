@@ -1,0 +1,19 @@
+@import '../../../app/providers/styles/variables/variables.scss';
+
+.header {
+    padding: 24px 0;
+}
+
+.logo {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--general-color);
+
+    & svg {
+        fill: var(--blue-color);
+        width: 24px;
+        height: 24px;
+    }
+}
