@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.scss'
 
 export const Navbar = React.memo(() => (
-    <Row>
+    <Row style={{ height: '100%' }}>
         <Col span={6} className={s.linkWrapper}>
             <NavLink className={({ isActive }) => cl(s.link, { [s.active]: isActive })} to='/'>
                 Home

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../../../shared/assets/images/logo.svg'
 import s from './Header.module.scss'
 import { Navbar } from './Navbar/Navbar'
+import { ProfileHeader } from './ProfileHeader/ProfileHeader'
 
 export const Header = () => {
     console.log('123')
@@ -20,8 +21,8 @@ export const Header = () => {
                     <Col span={12}>
                         <Navbar />
                     </Col>
-                    <Col span={6} style={{ textAlign: 'center' }}>
-                        profile will be here
+                    <Col span={6} style={{ textAlign: 'end' }}>
+                        <ProfileHeader />
                     </Col>
                 </Row>
             </Col>
