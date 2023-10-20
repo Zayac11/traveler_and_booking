@@ -1,0 +1,36 @@
+
+.container {
+    padding: 64px;
+    background: url('../../../shared//assets/images/app_bg.webp') center no-repeat;
+    background-size: cover;
+    color: white;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.title {
+    max-width: 50%;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 140%;
+    margin-bottom: 30px;
+}
+
+.smartphone {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100%;
+}
+
+@media screen and (max-width: 1300px) {
+    .container {
+        padding: 32px;
+    }
+    .title {
+        margin-bottom: 16px;
+    }
+}
