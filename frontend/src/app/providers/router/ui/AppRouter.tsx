@@ -1,3 +1,4 @@
+import { Col } from 'antd'
 import { memo, Suspense, useCallback } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AppRouteProps, routeConfig } from '../../../../shared/config/routeConfig/routeConfig'
@@ -9,7 +10,9 @@ const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRouteProps) => {
         const element = (
             <Suspense fallback={<Preloader stroke='#000' />}>
-                <div className='page-wrapper'>{route.element}</div>
+                <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20} className='page-wrapper'>
+                    {route.element}
+                </Col>
             </Suspense>
         )
         return (

@@ -1,5 +1,6 @@
 import { RouteProps } from 'react-router-dom'
 import { LoginPage } from '../../../pages/LoginPage'
+import { MainPage } from '../../../pages/MainPage'
 import RegisterPage from '../../../pages/RegisterPage/ui/RegisterPage'
 
 export type AppRouteProps = RouteProps & {
@@ -18,7 +19,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     main_page: {
         path: RoutePath.main_page,
-        element: <></>,
+        element: <MainPage />,
     },
     login: {
         path: RoutePath.login,

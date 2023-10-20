@@ -7,7 +7,7 @@ import { ProfileHeader } from './ProfileHeader/ProfileHeader'
 
 export const Header = () => (
     <Row>
-        <Col className={s.header} offset={4} span={16}>
+        <Col className={s.header} xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
             <Row>
                 <Col span={6}>
                     <NavLink to='/'>
