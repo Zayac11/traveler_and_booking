@@ -42,7 +42,7 @@ router.post(
 
     await user.save()
 
-    res.status(204).json()
+    return res.status(204).json()
 
   } catch (e) {
     console.error(e)
@@ -84,10 +84,10 @@ router.post(
     const token = jwt.sign(
       { userId: user.id },
       config.get('jwtSecret'),
-      { expiresIn: '24h' }
+      { expiresIn: '14d' }
     )
 
-    res.json({ token })
+    return res.json({ token })
 
   } catch (e) {
     console.error(e)

@@ -19,6 +19,7 @@ app.use(function(req, res, next) { //allow cross origin requests
 });
 
 app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api', require('./routes/profile.routes'))
 
 async function start () {
     try {
