@@ -1,5 +1,6 @@
 import cl from 'classnames'
 import React from 'react'
+import { SearchBar } from '../../../widgets/SearchBar'
 import s from './SearchPage.module.scss'
 
 interface SearchPageProps {
@@ -11,7 +12,11 @@ const SearchPage = React.memo((props: SearchPageProps) => {
 
     return (
         <div className={cl(className, s.container)}>
-            <div />
+            <div className={s.searchWrapper}>
+                <div className={s.search}>
+                    <SearchBar onSearch={() => {}} />
+                </div>
+            </div>
         </div>
     )
 })

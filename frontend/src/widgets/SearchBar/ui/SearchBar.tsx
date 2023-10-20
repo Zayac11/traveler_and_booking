@@ -1,28 +1,24 @@
 import { EnvironmentFilled, UserOutlined } from '@ant-design/icons'
 import { Button, Col, DatePicker, Form, Input, Row } from 'antd'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import s from './MainSearchBar.module.scss'
+import s from './SearchBar.module.scss'
 
-interface MainSearchBarSchema {
+export interface SearchBarSchema {
     city: string
     dateIn: string
     dateOut: string
     guestsCount: number
 }
 
-export const MainSearchBar = React.memo(() => {
-    const navigate = useNavigate()
+interface SearchBarProps {
+    onSearch: (data: SearchBarSchema) => void
+}
 
-    const handleSubmit = (data: MainSearchBarSchema) => {
-        navigate(
-            '/search/' +
-                `?city=${data.city ?? ''}&dateIn=${data.dateIn ?? ''}&dateOut=${data.dateOut ?? ''}&guestsCount=${data.guestsCount ?? ''}`
-        )
-    }
+export const SearchBar = React.memo((props: SearchBarProps) => {
+    const { onSearch } = props
 
     return (
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={onSearch}>
             <Row gutter={12} data-testid='MainSearchBar' className={s.container}>
                 <Col span={6}>
                     <Form.Item style={{ margin: 0 }} name='city'>
