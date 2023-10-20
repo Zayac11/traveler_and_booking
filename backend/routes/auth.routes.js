@@ -29,7 +29,6 @@ router.post(
       })
     }
 
-    console.log(req.body)
     const {email, password, username} = req.body
 
     const candidate = await User.findOne({ email })
@@ -40,7 +39,6 @@ router.post(
 
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({ email, password: hashedPassword, username })
-    console.log(user)
 
     await user.save()
 
@@ -59,7 +57,6 @@ router.post(
     jsonParser,
     check('email', 'Incorrect email').normalizeEmail().isEmail(),
     check('password', 'Password is required').exists(),
-    check('username', 'Username is required').exists()
   ],
   async (req, res) => {
   try {
@@ -78,7 +75,6 @@ router.post(
     if (!user) {
       return res.status(400).json({ message: 'User not found' })
     }
-
     const isMatch = await bcrypt.compare(password, user.password)
 
     if (!isMatch) {
@@ -94,6 +90,7 @@ router.post(
     res.json({ token })
 
   } catch (e) {
+    console.error(e)
     res.status(500).json({ message: 'Something went wrong' })
   }
 })

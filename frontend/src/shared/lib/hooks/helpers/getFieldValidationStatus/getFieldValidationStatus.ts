@@ -7,9 +7,12 @@ export const getFieldValidationStatus = (
     field: string
 ): 'error' | undefined => {
     if (serverError && 'data' in serverError) {
-        const { errors } = serverError.data as { errors: ServerFieldError[]; message: string }
-        const error = errors.find((item: ServerFieldError) => item.path === field)
-        if (error) return 'error'
+        const data = serverError.data as { errors?: ServerFieldError[]; message: string }
+        if ('errors' in data) {
+            const { errors } = data
+            const error = errors?.find((item: ServerFieldError) => item.path === field)
+            if (error) return 'error'
+        }
         return undefined
     }
     return undefined
