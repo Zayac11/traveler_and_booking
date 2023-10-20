@@ -41,7 +41,7 @@ export const MainSearchBar = React.memo(() => {
                 </Col>
                 <Col span={5}>
                     <Form.Item style={{ margin: 0 }} name='guestsCount'>
-                        <Input type='number' placeholder='Guests' prefix={<UserOutlined style={{ color: '#1B1F2D' }} />} />
+                        <Input min={1} type='number' placeholder='Guests' prefix={<UserOutlined style={{ color: '#1B1F2D' }} />} />
                     </Form.Item>
                 </Col>
                 <Col span={5}>

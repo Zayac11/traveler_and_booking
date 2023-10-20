@@ -1,3 +1,4 @@
+import { MainPlaces } from '../../../widgets/MainPlaces'
 import { MainSearch } from '../../../widgets/MainSearch'
 
 const MainPage = () => {
@@ -5,6 +6,7 @@ const MainPage = () => {
     return (
         <>
             <MainSearch />
+            <MainPlaces />
         </>
     )
 }

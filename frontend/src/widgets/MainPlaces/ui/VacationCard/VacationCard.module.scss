@@ -1,0 +1,23 @@
+
+.image {
+    margin-bottom: 14px;
+    display: block;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.name {
+    color: var(--general-color);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 2px;
+}
+
+.count {
+    color: var(--general-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.28px;
+}
