@@ -19,7 +19,7 @@ const AppRouter = () => {
                 element={
                     route.authOnly ? (
                         <RequireAuth>{element}</RequireAuth>
-                    ) : route.authOnly ? (
+                    ) : route.unAuthOnly ? (
                         <RequireUnAuth>{element}</RequireUnAuth>
                     ) : (
                         element

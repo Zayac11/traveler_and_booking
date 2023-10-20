@@ -5,7 +5,7 @@ import { getProfileData } from '../../../../entities/Profile'
 export function RequireUnAuth({ children }: { children: JSX.Element }) {
     const profileData = useSelector(getProfileData)
     const location = useLocation()
-
+    
     if (profileData) {
         return <Navigate to='/' state={{ from: location }} replace />
     }

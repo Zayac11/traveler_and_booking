@@ -17,7 +17,7 @@ router.get(
       return res.status(401).json({message: 'Unauthorize'})
     }
 
-    res.json({ user })
+    res.json({ email: user.email, username: user.username })
   } catch (e) {
     console.error(e)
     res.status(500).json({ message: 'Something went wrong' })

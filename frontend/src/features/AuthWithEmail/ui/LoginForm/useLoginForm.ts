@@ -7,7 +7,6 @@ interface useLoginFormProps {
 
 export const useLoginForm = ({ onSuccessAuth }: useLoginFormProps) => {
     const [doAuth, { isLoading, error: serverError }] = useDoAuth()
-    console.log(serverError)
 
     const onSubmit = useCallback(
         (data: LoginSchema) => {
