@@ -1,5 +1,9 @@
 @import '../../../app/providers/styles/variables/variables.scss';
 
+.wrapper {
+    background-color: white;
+}
+
 .header {
     padding: 20px 0;
     margin-bottom: 12px;
@@ -15,5 +19,32 @@
         fill: var(--blue-color);
         width: 24px;
         height: 24px;
+    }
+}
+
+.search {
+    &.wrapper {
+        background: linear-gradient(180deg, #2969BF 0%, #144E9D 100%);
+        height: 200px;
+    }
+
+    a {
+        color: white;
+        &:hover {
+            color: white;
+        }
+    }
+
+    .logo {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: normal;
+        color: white;
+    
+        & svg {
+            fill: white;
+            width: 24px;
+            height: 24px;
+        }
     }
 }
