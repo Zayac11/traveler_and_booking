@@ -41,6 +41,8 @@ module.exports = {
         ],
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',

@@ -1,5 +1,6 @@
 import { RouteProps } from 'react-router-dom'
 import { LoginPage } from '../../../pages/LoginPage'
+import RegisterPage from '../../../pages/RegisterPage/ui/RegisterPage'
 
 export type AppRouteProps = RouteProps & {
     authOnly?: boolean
@@ -26,7 +27,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     },
     register: {
         path: RoutePath.register,
-        element: <></>,
+        element: <RegisterPage />,
         unAuthOnly: true,
     },
 }

@@ -4,6 +4,7 @@ export interface LoginSchema {
 }
 
 export interface RegisterSchema {
+    username: string
     email: string
     password: string
     confirm_password: string

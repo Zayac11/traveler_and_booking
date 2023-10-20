@@ -11,9 +11,8 @@ export const useLoginForm = ({ onSuccessAuth }: useLoginFormProps) => {
 
     const onSubmit = useCallback(
         (data: LoginSchema) => {
-            console.log(data)
             doAuth(data).then((data) => {
-                if (onSuccessAuth && !('errors' in data)) {
+                if (onSuccessAuth && !('error' in data)) {
                     onSuccessAuth()
                 }
             })

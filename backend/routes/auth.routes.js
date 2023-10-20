@@ -5,15 +5,18 @@ const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
 const router = Router()
+const bodyParser = require('body-parser')
 
+const jsonParser = bodyParser.json()
 
 // /api/auth/register
 router.post(
   '/register',
   [
-    check('email', 'Некорректный email').isEmail(),
-    check('password', 'Минимальная длина пароля 6 символов')
-      .isLength({ min: 6 })
+    jsonParser,
+    check('password', 'Password is too short')
+    .isLength({ min: 6 }),
+    check('email', 'Incorrect email').isEmail(),
   ],
   async (req, res) => {
   try {
@@ -22,27 +25,30 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: 'Некорректный данные при регистрации'
+        message: 'Incorrect data'
       })
     }
 
-    const {email, password} = req.body
+    console.log(req.body)
+    const {email, password, username} = req.body
 
     const candidate = await User.findOne({ email })
 
     if (candidate) {
-      return res.status(400).json({ message: 'Такой пользователь уже существует' })
+      return res.status(400).json({ message: 'User is already exists' })
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const user = new User({ email, password: hashedPassword })
+    const user = new User({ email, password: hashedPassword, username })
+    console.log(user)
 
     await user.save()
 
-    res.status(201).json({ user })
+    res.status(204).json()
 
   } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    console.error(e)
+    res.status(500).json({ message: 'Something went wrong' })
   }
 })
 
@@ -50,8 +56,10 @@ router.post(
 router.post(
   '/login',
   [
-    check('email', 'Введите корректный email').normalizeEmail().isEmail(),
-    check('password', 'Введите пароль').exists()
+    jsonParser,
+    check('email', 'Incorrect email').normalizeEmail().isEmail(),
+    check('password', 'Password is required').exists(),
+    check('username', 'Username is required').exists()
   ],
   async (req, res) => {
   try {
@@ -60,23 +68,21 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: 'Некорректный данные при входе в систему'
+        message: 'Incorrect data'
       })
     }
 
     const {email, password} = req.body
     const user = await User.findOne({ email })
-    console.log(req.body)
-    console.log(user)
 
     if (!user) {
-      return res.status(400).json({ message: 'Пользователь не найден' })
+      return res.status(400).json({ message: 'User not found' })
     }
 
     const isMatch = await bcrypt.compare(password, user.password)
 
     if (!isMatch) {
-      return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' })
+      return res.status(400).json({ message: 'Incorrect email or password' })
     }
 
     const token = jwt.sign(
@@ -88,7 +94,7 @@ router.post(
     res.json({ token })
 
   } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    res.status(500).json({ message: 'Something went wrong' })
   }
 })
 
