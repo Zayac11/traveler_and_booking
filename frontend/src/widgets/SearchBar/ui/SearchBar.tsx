@@ -29,8 +29,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
     const [rooms, setRooms] = useState(1)
     const [guestsCount, setGuestsCount] = useState(`Guests ${initialGuests}, rooms ${initialRooms}`)
     const [form] = Form.useForm()
-    console.log(initialDateIn)
-    console.log(dayjs(initialDateIn))
+
     const handleGuestsChange = useCallback(
         (guests: number, rooms: number) => {
             const newString = `Guests ${guests}, rooms ${rooms}`

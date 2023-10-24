@@ -1,5 +1,6 @@
+import { Hotel } from '../../../../entities/Hotel'
 import { rtkApi } from '../../../../shared/config/api/api'
-import { Hotel, SearchHotelsSchema } from '../types/SearchHotels'
+import { SearchHotelsSchema } from '../types/SearchHotels'
 
 export const searchHotelsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -11,14 +12,14 @@ export const searchHotelsApi = rtkApi.injectEndpoints({
                     place: args.place,
                 },
             }),
-            async onQueryStarted(arg: SearchHotelsSchema, { queryFulfilled }) {
-                try {
-                    const { data } = await queryFulfilled
-                    console.log(data)
-                } catch (err) {
-                    console.error(err)
-                }
-            },
+            // async onQueryStarted(arg: SearchHotelsSchema, { queryFulfilled }) {
+            //     try {
+            //         const { data } = await queryFulfilled
+            //         console.log(data)
+            //     } catch (err) {
+            //         console.error(err)
+            //     }
+            // },
         }),
     }),
 })

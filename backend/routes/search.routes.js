@@ -13,7 +13,7 @@ router.post(
   async (req, res) => {
   try {
     // const {place, attractions, facilities, activities, rate, price} = req.body
-    console.log(req.body)
+    // console.log(req.body)
     const hotel = await Hotel.find()
 
     res.json({ hotels: hotel })

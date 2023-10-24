@@ -1,11 +1,13 @@
 import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
 import { CombinedState } from 'redux'
+import { HotelSchema } from '../../../../entities/Hotel'
 import { ProfileSchema } from '../../../../entities/Profile'
 import { rtkApi } from '../../../../shared/config/api/api'
 
 export interface StateSchema {
     profile: ProfileSchema
+    hotel: HotelSchema
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 }
 
