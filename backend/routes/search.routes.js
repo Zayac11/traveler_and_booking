@@ -16,7 +16,7 @@ router.post(
     // console.log(req.body)
     const hotel = await Hotel.find()
 
-    res.json({ hotels: hotel })
+    res.json(hotel)
   } catch (e) {
     console.error(e)
     res.status(500).json({ message: 'Something went wrong' })

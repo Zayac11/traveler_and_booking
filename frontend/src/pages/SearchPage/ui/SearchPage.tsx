@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { getHotelFilters } from '../../../entities/Hotel'
 import { useSearchHotel } from '../../../features/SearchHotels'
 import { SearchFilters } from '../../../widgets/SearchFilters'
+import { HotelsList } from '../../../widgets/SearchList'
 import { SearchWidget } from '../../../widgets/SearchWidget'
 import s from './SearchPage.module.scss'
 
@@ -32,7 +33,12 @@ const SearchPage = React.memo((props: SearchPageProps) => {
                 <Col span={6}>
                     <SearchFilters />
                 </Col>
-                <Col span={18}></Col>
+                <Col span={18}>
+                    <h2 className={s.title}>
+                        {filters.city}: {hotels?.length} search results found
+                    </h2>
+                    <HotelsList hotels={hotels ?? []} />
+                </Col>
             </Row>
         </div>
     )
