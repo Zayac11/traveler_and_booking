@@ -8,14 +8,6 @@ export const filterApi = rtkApi.injectEndpoints({
                 url: 'api/filters',
                 method: 'GET',
             }),
-            async onQueryStarted(arg: void, { queryFulfilled }) {
-                try {
-                    const { data } = await queryFulfilled
-                    console.log(data)
-                } catch (err) {
-                    console.error(err)
-                }
-            },
         }),
     }),
 })

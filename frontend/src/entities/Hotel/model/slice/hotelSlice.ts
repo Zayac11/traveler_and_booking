@@ -7,7 +7,7 @@ export const hotelSlice = createSlice({
     name: 'hotel',
     initialState,
     reducers: {
-        setRate: (state, action: PayloadAction<number[]>) => {
+        setRate: (state, action: PayloadAction<number>) => {
             state.rate = action.payload
         },
         setCity: (state, action: PayloadAction<string>) => {

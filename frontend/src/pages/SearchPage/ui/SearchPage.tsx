@@ -1,8 +1,10 @@
+import { Col, Row } from 'antd'
 import cl from 'classnames'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getHotelFilters } from '../../../entities/Hotel'
 import { useSearchHotel } from '../../../features/SearchHotels'
+import { SearchFilters } from '../../../widgets/SearchFilters'
 import { SearchWidget } from '../../../widgets/SearchWidget'
 import s from './SearchPage.module.scss'
 
@@ -26,6 +28,12 @@ const SearchPage = React.memo((props: SearchPageProps) => {
     return (
         <div className={cl(className, s.container)}>
             <SearchWidget />
+            <Row gutter={30}>
+                <Col span={6}>
+                    <SearchFilters />
+                </Col>
+                <Col span={18}></Col>
+            </Row>
         </div>
     )
 })

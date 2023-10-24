@@ -1,0 +1,29 @@
+
+.title {
+    padding-left: 18px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    color: var(--general-color)
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.text {
+    font-size: 14px;
+    letter-spacing: 0.28px;
+    color: var(--general-color);
+    margin-bottom: 8px;
+}
+
+.radioButton {
+    padding: 0 9px !important;
+    & span {
+        display: flex;
+        align-items: center;
+    }
+}

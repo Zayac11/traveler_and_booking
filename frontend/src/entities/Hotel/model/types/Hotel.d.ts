@@ -12,9 +12,9 @@ export interface Hotel {
 }
 
 export interface HotelSchema {
-    rate?: number[]
+    rate?: number
     price?: number
     activities?: string[]
-    facilities?: string []
+    facilities?: string[]
     city?: string
 }
