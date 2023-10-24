@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 
 // /api/search
-router.get(
+router.post(
   '/search',
   [jsonParser],
   async (req, res) => {
