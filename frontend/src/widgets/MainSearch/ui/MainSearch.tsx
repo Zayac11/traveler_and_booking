@@ -7,7 +7,6 @@ export const MainSearch = React.memo(() => {
     const navigate = useNavigate()
 
     const handleSubmit = (data: SearchBarSchema) => {
-        console.log(data)
         navigate(
             '/search/' +
                 `?city=${data.city ?? ''}&dateIn=${data.dateIn ?? ''}&dateOut=${data.dateOut ?? ''}&guestsCount=${
