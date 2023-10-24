@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const config = require('config')
+const fillDatabase = require('./helpers/fillDatabase')
 
 const PORT = config.get('port') ?? 8000
 
@@ -21,6 +22,7 @@ app.use(function(req, res, next) { //allow cross origin requests
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api', require('./routes/profile.routes'))
 
+
 async function start () {
     try {
         await mongoose.connect(config.get('mongoUri'), {
@@ -30,6 +32,8 @@ async function start () {
         app.listen(PORT, () => {
             console.log('Server has been started')
         })
+        // fillDatabase()
+
     }
     catch(e) {
         console.error('Server error', e)
