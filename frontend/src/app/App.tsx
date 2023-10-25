@@ -24,7 +24,7 @@ export const App = () => {
                 }}
             >
                 {location.pathname === '/search/' ? <Header isSearch /> : <Header isSearch={false} />}
-                <Suspense fallback={<Preloader stroke='#1d0e0b' />}>{init && <AppRouter />}</Suspense>
+                <Suspense fallback={<Preloader />}>{init && <AppRouter />}</Suspense>
                 <Footer />
             </ConfigProvider>
         </>

@@ -7,6 +7,7 @@
     font-weight: 500;
     line-height: normal;
     color: var(--general-color);
+    margin-bottom: 6px;
 
     & svg {
         fill: var(--blue-color);
@@ -38,5 +39,6 @@
     &.firstCol {
         width: calc(100% - 34px);
         margin-left: auto;
+        cursor: default;
     }
 }

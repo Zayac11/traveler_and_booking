@@ -6,14 +6,15 @@ import s from './GuestsPopover.module.scss'
 
 interface GuestsPopoverProps {
     className?: string
+    initialValues?: { guests: number; rooms: number }
     onChange: (guests: number, rooms: number) => void
 }
 
 export const GuestsPopover = React.memo((props: GuestsPopoverProps) => {
-    const { className, onChange } = props
+    const { className, onChange, initialValues } = props
 
-    const [guests, setGuests] = useState(1)
-    const [rooms, setRooms] = useState(1)
+    const [guests, setGuests] = useState(initialValues?.guests ?? 1)
+    const [rooms, setRooms] = useState(initialValues?.rooms ?? 1)
 
     const handleGuestsChange = (value: number) => {
         setGuests(value)

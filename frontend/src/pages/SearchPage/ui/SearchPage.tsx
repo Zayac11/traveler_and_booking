@@ -4,8 +4,8 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getHotelFilters } from '../../../entities/Hotel'
 import { useSearchHotel } from '../../../features/SearchHotels'
-import { SearchFilters } from '../../../widgets/SearchFilters'
 import { HotelsList } from '../../../widgets/HotelsList'
+import { SearchFilters } from '../../../widgets/SearchFilters'
 import { SearchWidget } from '../../../widgets/SearchWidget'
 import s from './SearchPage.module.scss'
 
@@ -16,10 +16,10 @@ interface SearchPageProps {
 const SearchPage = React.memo((props: SearchPageProps) => {
     const { className } = props
     const filters = useSelector(getHotelFilters)
-    const [searchHotels, { data: hotels }] = useSearchHotel()
+    const [searchHotels, { data: hotels, isLoading }] = useSearchHotel()
 
     useEffect(() => {
-        if (filters.city) {
+        if (filters.city || filters.city === '') {
             searchHotels({ place: filters.city })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,7 +36,7 @@ const SearchPage = React.memo((props: SearchPageProps) => {
                     <h2 className={s.title}>
                         {filters.city}: {hotels?.length} search results found
                     </h2>
-                    <HotelsList hotels={hotels ?? []} />
+                    <HotelsList isLoading={isLoading} hotels={hotels ?? []} />
                 </Col>
             </Row>
         </div>

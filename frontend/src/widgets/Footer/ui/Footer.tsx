@@ -14,8 +14,8 @@ export const Footer = React.memo(() => (
                         <div className={s.logo}>
                             <Logo /> Traveler and Booking
                         </div>
-                        <div className={cl(s.link, s.firstCol)}>Your next goto companion for travel</div>
                     </NavLink>
+                    <div className={cl(s.link, s.firstCol)}>Your next goto companion for travel</div>
                 </Col>
                 <Col span={4}>
                     <div className={s.title}>Company</div>

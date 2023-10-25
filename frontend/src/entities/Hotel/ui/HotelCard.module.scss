@@ -3,6 +3,11 @@
     border-radius: 5px;
     border: 1px solid #E0E0E0;
     background: #FFF;    
+    padding: 18px;
+
+    & > div {
+        padding: 0 !important;
+    }
 }
 
 .image {

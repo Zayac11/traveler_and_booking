@@ -38,7 +38,7 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                 </Col>
                 <Col span={5} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                     <div className={s.period}>
-                        {roomsCount} rooms, {daysCount} days
+                        {roomsCount} room, {daysCount} days
                     </div>
                     <div className={s.price}>${hotelItem.lowestPrice}</div>
                     <div className={s.taxes}>Includes taxes and fees</div>
