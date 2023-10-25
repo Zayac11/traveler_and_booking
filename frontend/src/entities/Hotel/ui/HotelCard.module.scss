@@ -25,6 +25,7 @@
 
 .rate {
     margin-bottom: 18px;
+    align-items: center;
 }
 
 .description {
@@ -44,4 +45,32 @@
     letter-spacing: 0.3px;
     padding: 10px 18px;
     height: auto;
+}
+
+.period {
+    color: var(--general-color);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.28px;
+    text-align: right;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+    color: var(--general-color);
+    text-align: right;
+}
+
+.taxes {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.28px;
+    text-align: right;
 }

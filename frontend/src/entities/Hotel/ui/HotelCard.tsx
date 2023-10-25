@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from 'antd'
+import { Button, Card, Col, Rate, Row, Space } from 'antd'
 import cl from 'classnames'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
@@ -7,10 +7,12 @@ import s from './HotelCard.module.scss'
 
 interface HotelCardProps extends Hotel {
     className?: string
+    roomsCount: number
+    daysCount: number
 }
 
 export const HotelCard = React.memo((props: HotelCardProps) => {
-    const { className, ...hotelItem } = props
+    const { className, roomsCount, daysCount, ...hotelItem } = props
     console.log(hotelItem)
     return (
         <Card className={cl(className, s.container)}>
@@ -18,11 +20,15 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                 <Col span={9}>
                     <img className={s.image} src={hotelItem.image[0]} loading='lazy' alt={hotelItem.name} />
                 </Col>
-                <Col span={13}>
+                <Col span={10}>
                     <div className={s.title}>{hotelItem.name}</div>
-                    <div className={s.rate}>
-                        {hotelItem.rate} ({hotelItem.reviews_number} reviews)
-                    </div>
+                    <Space className={s.rate}>
+                        <Rate disabled allowHalf defaultValue={hotelItem.rate} />
+                        <span>
+                            {' '}
+                            {hotelItem.rate} ({hotelItem.reviews_number} reviews)
+                        </span>
+                    </Space>
                     <div className={s.description}>{hotelItem.description}</div>
                     <NavLink to={'/hotel/' + hotelItem._id}>
                         <Button className={s.link} type='primary'>
@@ -30,8 +36,12 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                         </Button>
                     </NavLink>
                 </Col>
-                <Col span={2}>
-                    <div></div>
+                <Col span={5} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                    <div className={s.period}>
+                        {roomsCount} rooms, {daysCount} days
+                    </div>
+                    <div className={s.price}>${hotelItem.lowestPrice}</div>
+                    <div className={s.taxes}>Includes taxes and fees</div>
                 </Col>
             </Row>
         </Card>

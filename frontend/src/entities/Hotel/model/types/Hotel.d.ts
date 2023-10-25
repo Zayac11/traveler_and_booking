@@ -10,11 +10,14 @@ export interface Hotel {
     image: string[]
     reviews_number: number
     rate: number
+    lowestPrice: number
 }
 
 export interface HotelSchema {
     rate?: number
     price?: number
+    daysCount?: number
+    rooms?: number
     activities?: string[]
     facilities?: string[]
     city?: string

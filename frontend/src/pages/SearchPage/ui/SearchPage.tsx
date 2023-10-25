@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { getHotelFilters } from '../../../entities/Hotel'
 import { useSearchHotel } from '../../../features/SearchHotels'
 import { SearchFilters } from '../../../widgets/SearchFilters'
-import { HotelsList } from '../../../widgets/SearchList'
+import { HotelsList } from '../../../widgets/HotelsList'
 import { SearchWidget } from '../../../widgets/SearchWidget'
 import s from './SearchPage.module.scss'
 
@@ -15,7 +15,6 @@ interface SearchPageProps {
 
 const SearchPage = React.memo((props: SearchPageProps) => {
     const { className } = props
-    // const { data: filters } = useGetFiltersList()
     const filters = useSelector(getHotelFilters)
     const [searchHotels, { data: hotels }] = useSearchHotel()
 

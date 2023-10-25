@@ -13,6 +13,12 @@ export const hotelSlice = createSlice({
         setCity: (state, action: PayloadAction<string>) => {
             state.city = action.payload
         },
+        setRooms: (state, action: PayloadAction<number>) => {
+            state.rooms = action.payload
+        },
+        setDaysCount: (state, action: PayloadAction<number>) => {
+            state.daysCount = action.payload
+        },
         setPrice: (state, action: PayloadAction<number>) => {
             state.price = action.payload
         },
@@ -24,7 +30,9 @@ export const hotelSlice = createSlice({
         },
         clearFilters: (state) => {
             state.facilities = undefined
+            state.rooms = undefined
             state.activities = undefined
+            state.daysCount = undefined
             state.price = undefined
             state.city = undefined
             state.rate = undefined
