@@ -61,3 +61,19 @@
     letter-spacing: 0.32px;
     color: var(--general-color);
 }
+
+.attractionItem {
+    display: flex;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.28px;
+    color: var(--general-color);
+    justify-content: space-between;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}

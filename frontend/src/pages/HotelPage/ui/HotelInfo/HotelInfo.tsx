@@ -1,4 +1,4 @@
-import { EnvironmentOutlined } from '@ant-design/icons'
+import { EnvironmentFilled, EnvironmentOutlined } from '@ant-design/icons'
 import { Col, Row, Space } from 'antd'
 import React from 'react'
 import { Hotel } from '../../../../entities/Hotel'
@@ -41,7 +41,20 @@ export const HotelInfo = React.memo((props: HotelInfoProps) => {
                         </div>
                     </div>
                 </Col>
-                <Col span={8}>{hotel.coordinates && <HotelMap coordinates={hotel.coordinates} />}</Col>
+                <Col span={8}>
+                    {hotel.coordinates && <HotelMap coordinates={hotel.coordinates} />}
+                    <h3 className={s.title}>Explore the area</h3>
+                    {hotel.attractions.length > 0 &&
+                        hotel.attractions.map((item) => (
+                            <Space align='start' key={item.name} className={s.attractionItem}>
+                                <Space size={6} align='start'>
+                                    <EnvironmentFilled />
+                                    {item.name}
+                                </Space>
+                                <span>{item.drive_time} min drive</span>
+                            </Space>
+                        ))}
+                </Col>
             </Row>
         </Col>
     )

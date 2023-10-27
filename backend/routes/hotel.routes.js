@@ -8,6 +8,7 @@ const Type = require('../models/Type')
 const router = Router()
 const bodyParser = require('body-parser')
 const getNamesOfObjects = require('../helpers/getNamesOfObjects')
+const getAttractions = require('../helpers/getAttractions')
 
 
 const jsonParser = bodyParser.json()
@@ -27,12 +28,12 @@ router.get(
     const activities = await Activity.find()
     const facilities = await Facility.find()
     const attractions = await Attraction.find()
-    
+
     const roomsOfCurrentHotel = rooms.filter((room) => hotel.rooms.includes(room._id))
     const typesOfCurrentHotel = getNamesOfObjects(types.filter((type) => hotel.types.includes(type._id)))
     const activitiesOfCurrentHotel = getNamesOfObjects(activities.filter((activity) => hotel.activities.includes(activity._id)))
     const facilitiesOfCurrentHotel = getNamesOfObjects(facilities.filter((facility) => hotel.facilities.includes(facility._id)))
-    const attractionsOfCurrentHotel = getNamesOfObjects(attractions.filter((attraction) => hotel.attractions.includes(attraction._id)))
+    const attractionsOfCurrentHotel = getAttractions(attractions.filter((attraction) => hotel.attractions.includes(attraction._id)), id)
     const lowestPrice = roomsOfCurrentHotel.reduce((acc, cur) => {
       if (acc < 0 || cur.price < acc) return cur.price
       return acc
