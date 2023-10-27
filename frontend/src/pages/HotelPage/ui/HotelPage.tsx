@@ -6,6 +6,7 @@ import Preloader from '../../../shared/ui/Preloader/ui/Preloader'
 import { HotelImages } from './HotelImages/HotelImages'
 import { HotelInfo } from './HotelInfo/HotelInfo'
 import s from './HotelPage.module.scss'
+import { HotelRooms } from './HotelRooms/HotelRooms'
 
 const HotelPage = React.memo(() => {
     const { id } = useParams()
@@ -24,6 +25,7 @@ const HotelPage = React.memo(() => {
                         </Col>
                         <div className={s.info}>
                             <HotelInfo hotel={data} />
+                            <HotelRooms rooms={data.rooms} />
                         </div>
                     </>
                 )

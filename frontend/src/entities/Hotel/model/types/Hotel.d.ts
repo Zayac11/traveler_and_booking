@@ -1,6 +1,14 @@
-export interface Attraction {
+interface Attraction {
     name: string
     drive_time: number
+}
+export interface Room {
+    _id: string
+    name: string
+    image: string
+    sleeps: number
+    description: string
+    price: number
 }
 
 export interface Hotel {
@@ -18,7 +26,7 @@ export interface Hotel {
     rate: number
     lowestPrice: number
     activities: string[]
-    rooms: any[]
+    rooms: Room[]
     facilities: FacilityVariants[]
     attractions: Attraction[]
     types: string[]

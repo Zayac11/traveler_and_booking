@@ -29,7 +29,14 @@ router.get(
     const facilities = await Facility.find()
     const attractions = await Attraction.find()
 
-    const roomsOfCurrentHotel = rooms.filter((room) => hotel.rooms.includes(room._id))
+    const roomsOfCurrentHotel = rooms.filter((room) => hotel.rooms.includes(room._id)).map((room) => ({
+      _id: room.id,
+      image: room.image,
+      name: room.name,
+      sleeps: room.sleeps,
+      description: room.description,
+      price: room.price
+    }))
     const typesOfCurrentHotel = getNamesOfObjects(types.filter((type) => hotel.types.includes(type._id)))
     const activitiesOfCurrentHotel = getNamesOfObjects(activities.filter((activity) => hotel.activities.includes(activity._id)))
     const facilitiesOfCurrentHotel = getNamesOfObjects(facilities.filter((facility) => hotel.facilities.includes(facility._id)))
