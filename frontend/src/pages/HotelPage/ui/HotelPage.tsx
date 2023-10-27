@@ -1,21 +1,24 @@
-import cl from 'classnames'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetCurrentHotel } from '../../../entities/Hotel'
+import Preloader from '../../../shared/ui/Preloader/ui/Preloader'
+import { HotelImages } from './HotelImages/HotelImages'
 import s from './HotelPage.module.scss'
 
-interface HotelPageProps {
-    className?: string
-}
-
-const HotelPage = React.memo((props: HotelPageProps) => {
-    const { className } = props
+const HotelPage = React.memo(() => {
     const { id } = useParams()
-    console.log(id)
-    const { data } = useGetCurrentHotel(id ?? '')
+    const { data, isLoading } = useGetCurrentHotel(id ?? '', {
+        refetchOnMountOrArgChange: true,
+    })
     return (
-        <div className={cl(className, s.container)}>
-            <div />
+        <div className={s.container}>
+            {isLoading ? (
+                <Preloader />
+            ) : (
+                <>
+                    <HotelImages images={data?.image ?? []} />
+                </>
+            )}
         </div>
     )
 })
