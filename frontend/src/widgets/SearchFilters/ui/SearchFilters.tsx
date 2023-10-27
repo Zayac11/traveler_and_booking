@@ -4,17 +4,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Filter, useGetFiltersList } from '../../../entities/Filter'
 import { getHotelFilters, hotelActions } from '../../../entities/Hotel'
-import { useSearchHotel } from '../../../features/SearchHotels'
+import { SearchHotelsSchema } from '../../../features/SearchHotels'
 import Star from '../../../shared/assets/icons/star.svg'
 import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import s from './SearchFilters.module.scss'
 const CheckboxGroup = Checkbox.Group
 
-export const SearchFilters = React.memo(() => {
+export const SearchFilters = React.memo(({ searchHotels }: { searchHotels: (args: SearchHotelsSchema) => void }) => {
     const dispatch = useAppDispatch()
     const filters = useSelector(getHotelFilters)
     const { data } = useGetFiltersList()
-    const [searchHotels] = useSearchHotel()
 
     const handlePriceChange = (e: RadioChangeEvent) => {
         dispatch(hotelActions.setPrice(Number(e.target.value)))
