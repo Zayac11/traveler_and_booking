@@ -3,11 +3,13 @@ import { Button, Col, DatePicker, Form, Input, Popover, Row } from 'antd'
 import { RangePickerProps } from 'antd/es/date-picker'
 import dayjs from 'dayjs'
 import React, { useCallback, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { hotelActions } from '../../../entities/Hotel'
 import { GuestsPopover } from './GuestsPopover/GuestsPopover'
 import s from './SearchBar.module.scss'
 
 export interface SearchBarSchema {
-    city: string
+    place: string
     dateIn: string
     dateOut: string
     guestsCount: string
@@ -19,7 +21,7 @@ interface SearchBarProps {
     onSearch: (data: SearchBarSchema) => void
     initialGuests?: number
     initialRooms?: number
-    initialCity?: string
+    initialPlace?: string
     initialDateIn?: string
     initialDateOut?: string
 }
@@ -28,7 +30,8 @@ const disabledInDay: RangePickerProps['disabledDate'] = (current) => current && 
 const disabledOutDay: RangePickerProps['disabledDate'] = (current) => current && current < dayjs().endOf('day')
 
 export const SearchBar = React.memo((props: SearchBarProps) => {
-    const { onSearch, initialGuests = 1, initialRooms = 1, initialCity = '', initialDateIn = '', initialDateOut = '' } = props
+    const { onSearch, initialGuests = 1, initialRooms = 1, initialPlace = '', initialDateIn = '', initialDateOut = '' } = props
+    const dispatch = useDispatch()
     const [guests, setGuests] = useState(initialGuests)
     const [rooms, setRooms] = useState(initialRooms)
     const [guestsCount, setGuestsCount] = useState(`Guests ${initialGuests}, rooms ${initialRooms}`)
@@ -61,9 +64,9 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
                 dateOut = data.dateOut
             }
         } else dateOut = new Date(dateIn.setDate(dateIn.getDate() + 1))
-
+        dispatch(hotelActions.setPlace(data.place))
         onSearch({
-            city: data.city,
+            place: data.place,
             dateIn: data.dateIn ?? String(new Date()),
             dateOut: String(dateOut),
             guestsCount: data.guestsCount,
@@ -76,7 +79,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
         <Form form={form} onFinish={handleSearch}>
             <Row gutter={12} data-testid='MainSearchBar' className={s.container}>
                 <Col span={6}>
-                    <Form.Item initialValue={initialCity} style={{ margin: 0 }} name='city'>
+                    <Form.Item initialValue={initialPlace} style={{ margin: 0 }} name='place'>
                         <Input placeholder='Where are you going?' prefix={<EnvironmentFilled style={{ color: '#1B1F2D' }} />} />
                     </Form.Item>
                 </Col>

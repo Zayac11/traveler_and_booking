@@ -1,8 +1,10 @@
 import { Checkbox, Radio, RadioChangeEvent, Space } from 'antd'
 import { CheckboxValueType } from 'antd/es/checkbox/Group'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Filter, useGetFiltersList } from '../../../entities/Filter'
-import { hotelActions } from '../../../entities/Hotel'
+import { getHotelFilters, hotelActions } from '../../../entities/Hotel'
+import { useSearchHotel } from '../../../features/SearchHotels'
 import Star from '../../../shared/assets/icons/star.svg'
 import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import s from './SearchFilters.module.scss'
@@ -10,19 +12,25 @@ const CheckboxGroup = Checkbox.Group
 
 export const SearchFilters = React.memo(() => {
     const dispatch = useAppDispatch()
-    const { data: filters } = useGetFiltersList()
+    const filters = useSelector(getHotelFilters)
+    const { data } = useGetFiltersList()
+    const [searchHotels] = useSearchHotel()
 
     const handlePriceChange = (e: RadioChangeEvent) => {
         dispatch(hotelActions.setPrice(Number(e.target.value)))
+        searchHotels({ ...filters, price: Number(e.target.value) })
     }
     const handlePopularFiltersChange = (values: CheckboxValueType[]) => {
         dispatch(hotelActions.setFacilities(values as string[]))
+        searchHotels({ ...filters, facilities: values as string[] })
     }
     const handleActivitiesChange = (values: CheckboxValueType[]) => {
         dispatch(hotelActions.setActivities(values as string[]))
+        searchHotels({ ...filters, activities: values as string[] })
     }
     const handleRatingChange = (e: RadioChangeEvent) => {
         dispatch(hotelActions.setRate(Number(e.target.value)))
+        searchHotels({ ...filters, rate: Number(e.target.value) })
     }
 
     return (
@@ -60,10 +68,10 @@ export const SearchFilters = React.memo(() => {
                 </Radio.Group>
             </Filter>
             <Filter className={s.section} title='Popular Filters'>
-                <CheckboxGroup options={filters?.facilities} onChange={handlePopularFiltersChange} />
+                <CheckboxGroup options={data?.facilities} onChange={handlePopularFiltersChange} />
             </Filter>
             <Filter className={s.section} title='Activities'>
-                <CheckboxGroup style={{ width: '100%' }} options={filters?.activities} onChange={handleActivitiesChange} />
+                <CheckboxGroup style={{ width: '100%' }} options={data?.activities} onChange={handleActivitiesChange} />
             </Filter>
         </div>
     )

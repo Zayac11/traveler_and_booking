@@ -19,7 +19,7 @@ export const SearchWidget = React.memo(() => {
         }
         dispatch(hotelActions.setActivities([]))
         dispatch(hotelActions.setFacilities([]))
-        dispatch(hotelActions.setCity(searchParams.get('city') ?? ''))
+        dispatch(hotelActions.setPlace(searchParams.get('place') ?? ''))
         dispatch(hotelActions.setRooms(Number(searchParams.get('rooms')) ?? 1))
         dispatch(hotelActions.setDaysCount(getDaysBetweenDates(dateIn, dateOut)))
 
@@ -30,7 +30,7 @@ export const SearchWidget = React.memo(() => {
         <>
             <div className={s.search}>
                 <SearchBar
-                    initialCity={searchParams.get('city') ?? ''}
+                    initialPlace={searchParams.get('place') ?? ''}
                     initialRooms={Number(searchParams.get('rooms')) ?? 1}
                     initialGuests={Number(searchParams.get('guests')) ?? 1}
                     initialDateIn={searchParams.get('dateIn') ?? ''}

@@ -2,8 +2,9 @@ import { Col, Row } from 'antd'
 import cl from 'classnames'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getHotelFilters } from '../../../entities/Hotel'
+import { getHotelFilters, hotelActions } from '../../../entities/Hotel'
 import { useSearchHotel } from '../../../features/SearchHotels'
+import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import { HotelsList } from '../../../widgets/HotelsList'
 import { SearchFilters } from '../../../widgets/SearchFilters'
 import { SearchWidget } from '../../../widgets/SearchWidget'
@@ -15,15 +16,17 @@ interface SearchPageProps {
 
 const SearchPage = React.memo((props: SearchPageProps) => {
     const { className } = props
+    const dispatch = useAppDispatch()
     const filters = useSelector(getHotelFilters)
     const [searchHotels, { data: hotels, isLoading }] = useSearchHotel()
 
     useEffect(() => {
-        if (filters.city || filters.city === '') {
-            searchHotels({ place: filters.city })
+        if (filters.place || filters.place === '') {
+            searchHotels({ place: filters.place })
+            dispatch(hotelActions.setPlace(filters.place))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filters.city])
+    }, [filters.place])
 
     return (
         <div className={cl(className, s.container)}>
@@ -34,7 +37,7 @@ const SearchPage = React.memo((props: SearchPageProps) => {
                 </Col>
                 <Col span={18}>
                     <h2 className={s.title}>
-                        {filters.city}: {hotels?.length} search results found
+                        {filters.place}: {hotels?.length} search results found
                     </h2>
                     <HotelsList isLoading={isLoading} hotels={hotels ?? []} />
                 </Col>

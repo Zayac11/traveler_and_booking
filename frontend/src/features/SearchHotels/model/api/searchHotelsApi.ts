@@ -10,16 +10,21 @@ export const searchHotelsApi = rtkApi.injectEndpoints({
                 method: 'POST',
                 body: {
                     place: args.place,
+                    price: args.price,
+                    types: args.types,
+                    facilities: args.facilities,
+                    activities: args.activities,
+                    rate: args.rate,
                 },
             }),
-            // async onQueryStarted(arg: SearchHotelsSchema, { queryFulfilled }) {
-            //     try {
-            //         const { data } = await queryFulfilled
-            //         console.log(data)
-            //     } catch (err) {
-            //         console.error(err)
-            //     }
-            // },
+            async onQueryStarted(arg: SearchHotelsSchema, { queryFulfilled }) {
+                try {
+                    const { data } = await queryFulfilled
+                    console.log(data)
+                } catch (err) {
+                    console.error(err)
+                }
+            },
         }),
     }),
 })

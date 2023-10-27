@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { HotelSchema } from '../..'
 
-const initialState: HotelSchema = {}
+const initialState: HotelSchema = {
+    place: '',
+}
 
 export const hotelSlice = createSlice({
     name: 'hotel',
     initialState,
     reducers: {
+        setPlace: (state, action: PayloadAction<string>) => {
+            state.place = action.payload
+        },
         setRate: (state, action: PayloadAction<number>) => {
             state.rate = action.payload
-        },
-        setCity: (state, action: PayloadAction<string>) => {
-            state.city = action.payload
         },
         setRooms: (state, action: PayloadAction<number>) => {
             state.rooms = action.payload
@@ -29,12 +31,12 @@ export const hotelSlice = createSlice({
             state.facilities = action.payload
         },
         clearFilters: (state) => {
+            state.place = ''
             state.facilities = undefined
             state.rooms = undefined
             state.activities = undefined
             state.daysCount = undefined
             state.price = undefined
-            state.city = undefined
             state.rate = undefined
         },
     },
