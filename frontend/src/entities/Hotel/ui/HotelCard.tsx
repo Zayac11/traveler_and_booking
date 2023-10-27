@@ -1,8 +1,9 @@
-import { Button, Card, Col, Rate, Row, Space } from 'antd'
+import { Button, Card, Col, Row } from 'antd'
 import cl from 'classnames'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Hotel } from '..'
+import { HotelRate } from '../../../shared/ui/HotelRate/ui/HotelRate'
 import s from './HotelCard.module.scss'
 
 interface HotelCardProps extends Hotel {
@@ -22,13 +23,7 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                 </Col>
                 <Col span={10}>
                     <div className={s.title}>{hotelItem.name}</div>
-                    <Space className={s.rate}>
-                        <Rate disabled allowHalf defaultValue={hotelItem.rate} />
-                        <span>
-                            {' '}
-                            {hotelItem.rate} ({hotelItem.reviews_number} reviews)
-                        </span>
-                    </Space>
+                    <HotelRate className={s.rate} rate={hotelItem.rate} reviewsNumber={hotelItem.reviews_number} />
                     <div className={s.description}>{hotelItem.description}</div>
                     <NavLink to={'/hotel/' + hotelItem._id}>
                         <Button className={s.link} type='primary'>

@@ -1,8 +1,9 @@
 export interface Hotel {
     _id: string
     name: string
-    place: string
     country: string
+    city: string
+    coordinates: string
     description: string
     address: string
     coordinates: string
@@ -11,6 +12,10 @@ export interface Hotel {
     reviews_number: number
     rate: number
     lowestPrice: number
+    activities: string[]
+    facilities: string[]
+    attractions: string[]
+    types: string[]
 }
 
 export interface HotelSchema {

@@ -15,9 +15,9 @@ export const HotelImages = React.memo((props: HotelImagesProps) => {
                 <img className={s.image} src={images[0]} alt='hotel' />
             </Col>
             <Col span={8}>
-                <Space direction='vertical' size={20}>
-                    <img className={s.image} src={images[1]} alt='hotel' />
-                    <img className={s.image} src={images[2]} alt='hotel' />
+                <Space direction='vertical' size={16}>
+                    <img className={s.image} src={images?.[1]} alt='hotel' />
+                    <img className={s.image} src={images?.[2]} alt='hotel' />
                 </Space>
             </Col>
         </Row>

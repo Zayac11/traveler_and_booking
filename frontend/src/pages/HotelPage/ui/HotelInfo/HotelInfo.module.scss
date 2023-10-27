@@ -1,0 +1,65 @@
+
+.container {
+    padding-top: 30px;
+    background: linear-gradient(180deg, rgba(244,244,244,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.title {
+    margin-bottom: 12px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.32px;
+    color: var(--general-color);
+}
+
+.rate {
+    margin-bottom: 12px;
+}
+
+.address {
+    display: flex;
+    font-size: 14px;
+    font-style: normal;
+    color: var(--general-color);
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.28px;
+    margin-bottom: 30px;
+}
+
+.addressIcon {
+    color: #2F80ED;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.overview {
+    border-radius: 6px;
+    background-color: white;
+}
+
+.overviewText {
+    padding: 24px;
+}
+
+.overviewTitle {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.18px;
+    color: var(--general-color);
+}
+
+.description {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.32px;
+    color: var(--general-color);
+}

@@ -1,3 +1,4 @@
+import { Col } from 'antd'
 import { RouteProps } from 'react-router-dom'
 import { HotelPage } from '../../../pages/HotelPage'
 import { LoginPage } from '../../../pages/LoginPage'
@@ -24,21 +25,37 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     main_page: {
         path: RoutePath.main_page,
-        element: <MainPage />,
+        element: (
+            <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+                <MainPage />
+            </Col>
+        ),
     },
     login: {
         path: RoutePath.login,
-        element: <LoginPage />,
+        element: (
+            <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+                <LoginPage />
+            </Col>
+        ),
         unAuthOnly: true,
     },
     register: {
         path: RoutePath.register,
-        element: <RegisterPage />,
+        element: (
+            <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+                <RegisterPage />
+            </Col>
+        ),
         unAuthOnly: true,
     },
     search: {
         path: RoutePath.search,
-        element: <SearchPage />,
+        element: (
+            <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+                <SearchPage />
+            </Col>
+        ),
     },
     hotel: {
         path: `${RoutePath.hotel}:id`,
