@@ -6,6 +6,7 @@ declare module '*.scss' {
     export = classNames
 }
 
+declare module 'ymaps'
 declare module '*.png'
 declare module '*.webp'
 declare module '*.jpg'

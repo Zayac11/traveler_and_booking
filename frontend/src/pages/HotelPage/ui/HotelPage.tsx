@@ -22,7 +22,9 @@ const HotelPage = React.memo(() => {
                         <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
                             <HotelImages images={data?.image ?? []} />
                         </Col>
-                        <HotelInfo hotel={data} />
+                        <div className={s.info}>
+                            <HotelInfo hotel={data} />
+                        </div>
                     </>
                 )
             )}

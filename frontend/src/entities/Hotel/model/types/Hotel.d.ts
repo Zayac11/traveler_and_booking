@@ -13,7 +13,8 @@ export interface Hotel {
     rate: number
     lowestPrice: number
     activities: string[]
-    facilities: string[]
+    rooms: any[]
+    facilities: FacilityVariants[]
     attractions: string[]
     types: string[]
 }
