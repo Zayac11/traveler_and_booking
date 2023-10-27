@@ -1,4 +1,5 @@
 import { RouteProps } from 'react-router-dom'
+import { HotelPage } from '../../../pages/HotelPage'
 import { LoginPage } from '../../../pages/LoginPage'
 import { MainPage } from '../../../pages/MainPage'
 import { RegisterPage } from '../../../pages/RegisterPage'
@@ -9,13 +10,14 @@ export type AppRouteProps = RouteProps & {
     unAuthOnly?: boolean
 }
 
-export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search'
+export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search' | 'hotel'
 
 export const RoutePath: Record<AppRoutes, string> = {
     main_page: '/',
     login: '/login',
     register: '/register',
     search: '/search/', // + params
+    hotel: '/hotel/', // + id
     notFound: '*',
 }
 
@@ -38,8 +40,12 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
         path: RoutePath.search,
         element: <SearchPage />,
     },
+    hotel: {
+        path: `${RoutePath.hotel}:id`,
+        element: <HotelPage />,
+    },
     notFound: {
         path: RoutePath.notFound,
-        element: <div>Not Found</div>,
+        element: <div>404 Page Not Found</div>,
     },
 }

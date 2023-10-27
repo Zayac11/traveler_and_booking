@@ -23,6 +23,7 @@ app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api', require('./routes/profile.routes'))
 app.use('/api', require('./routes/search.routes'))
 app.use('/api', require('./routes/filter.routes'))
+app.use('/api', require('./routes/hotel.routes'))
 
 
 async function start () {
