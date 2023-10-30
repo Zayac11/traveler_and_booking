@@ -14,17 +14,19 @@ export const RoomCard = React.memo((props: RoomCardProps) => {
     return (
         <div className={s.container}>
             <img className={s.image} src={room.image} alt='room' />
-            <div className={s.info}>
-                <div className={s.name}>{room.name}</div>
-                <div className={s.description}>{room.description}</div>
-                <Space align='start' size={6} className={s.sleeps}>
-                    <ShoppingOutlined />
-                    <span>Sleeps {room.sleeps}</span>
-                </Space>
+            <Space direction='vertical' className={s.info}>
+                <div>
+                    <div className={s.name}>{room.name}</div>
+                    <div className={s.description}>{room.description}</div>
+                    <Space align='start' size={6} className={s.sleeps}>
+                        <ShoppingOutlined />
+                        <span>Sleeps {room.sleeps}</span>
+                    </Space>
+                </div>
                 <Button className={s.button} type='primary'>
-                    Reserve suite for ${room.price}
+                    Reserve suite for ${room.price}/day
                 </Button>
-            </div>
+            </Space>
         </div>
     )
 })

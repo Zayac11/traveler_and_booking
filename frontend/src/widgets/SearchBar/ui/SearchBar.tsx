@@ -85,12 +85,12 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
                 </Col>
                 <Col span={4}>
                     <Form.Item initialValue={initialDateIn ? dayjs(initialDateIn) : undefined} style={{ margin: 0 }} name='dateIn'>
-                        <DatePicker disabledDate={disabledInDay} placeholder='Check in date' />
+                        <DatePicker style={{ width: '100%' }} disabledDate={disabledInDay} placeholder='Check in date' />
                     </Form.Item>
                 </Col>
                 <Col span={4}>
                     <Form.Item initialValue={initialDateOut ? dayjs(initialDateOut) : undefined} style={{ margin: 0 }} name='dateOut'>
-                        <DatePicker disabledDate={disabledOutDay} placeholder='Check out date' />
+                        <DatePicker style={{ width: '100%' }} disabledDate={disabledOutDay} placeholder='Check out date' />
                     </Form.Item>
                 </Col>
                 <Col span={5}>

@@ -15,7 +15,7 @@ export const HotelInfo = React.memo((props: HotelInfoProps) => {
     const { hotel } = props
 
     return (
-        <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+        <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20} className={s.container}>
             <Row gutter={16}>
                 <Col span={16}>
                     <h2 className={s.title}>{hotel.name}</h2>
