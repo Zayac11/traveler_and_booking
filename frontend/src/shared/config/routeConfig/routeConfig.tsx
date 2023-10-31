@@ -3,6 +3,7 @@ import { RouteProps } from 'react-router-dom'
 import { HotelPage } from '../../../pages/HotelPage'
 import { LoginPage } from '../../../pages/LoginPage'
 import { MainPage } from '../../../pages/MainPage'
+import { PaymentPage } from '../../../pages/PaymentPage'
 import { RegisterPage } from '../../../pages/RegisterPage'
 import { SearchPage } from '../../../pages/SearchPage'
 
@@ -11,7 +12,7 @@ export type AppRouteProps = RouteProps & {
     unAuthOnly?: boolean
 }
 
-export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search' | 'hotel'
+export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search' | 'hotel' | 'payment'
 
 export const RoutePath: Record<AppRoutes, string> = {
     main_page: '/',
@@ -19,6 +20,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     register: '/register',
     search: '/search/', // + params
     hotel: '/hotel/', // + id
+    payment: '/payment/', // + params
     notFound: '*',
 }
 
@@ -60,6 +62,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     hotel: {
         path: `${RoutePath.hotel}:id`,
         element: <HotelPage />,
+    },
+    payment: {
+        path: `${RoutePath.payment}`,
+        authOnly: true,
+        element: <PaymentPage />,
     },
     notFound: {
         path: RoutePath.notFound,

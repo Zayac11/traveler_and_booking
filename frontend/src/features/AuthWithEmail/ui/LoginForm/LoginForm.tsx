@@ -1,7 +1,7 @@
 import { Button, Form, Input } from 'antd'
 import { EmailRegex } from '../../../../shared/lib/consts/Regex'
-import { getFieldValidationMessage } from '../../../../shared/lib/hooks/helpers/getFieldValidationMessage/getFieldValidationMessage'
-import { getFieldValidationStatus } from '../../../../shared/lib/hooks/helpers/getFieldValidationStatus/getFieldValidationStatus'
+import { getFieldValidationMessage } from '../../../../shared/lib/helpers/getFieldValidationMessage/getFieldValidationMessage'
+import { getFieldValidationStatus } from '../../../../shared/lib/helpers/getFieldValidationStatus/getFieldValidationStatus'
 import s from './LoginForm.module.scss'
 import { useLoginForm } from './useLoginForm'
 

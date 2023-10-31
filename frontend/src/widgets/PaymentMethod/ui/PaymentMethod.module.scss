@@ -1,0 +1,63 @@
+
+.title {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.32px;
+    color: var(--general-color);
+    margin-bottom: 30px;
+}
+
+.card {
+    border-radius: 6px;
+    background: white;
+    margin-bottom: 25px;
+}
+
+.info {
+    padding: 24px;
+    width: 70%;
+    color: var(--general-color);
+}
+
+.infoBooking {
+    width: 100%;
+}
+
+.space {
+    width: 100%;
+
+    & > div {
+        width: 100%;
+    }
+}
+
+.input {
+    width: 100%;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    padding: 10px 12px;
+    border: none;
+}
+
+.informationTitle {
+    background: #F2C94C;
+    color: var(--general-color);
+}
+
+.list {
+   padding-left: 15px;
+   margin-bottom: 32px;
+}
+
+.link {
+    color: var(--blue-color);
+    cursor: pointer;
+}
+
+.button {
+    padding: 10px 18px;
+    height: auto;
+    margin-top: 24px;
+}

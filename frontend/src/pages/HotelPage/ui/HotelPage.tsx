@@ -14,7 +14,7 @@ const HotelPage = React.memo(() => {
         refetchOnMountOrArgChange: true,
     })
     return (
-        <div className={s.container}>
+        <>
             {isLoading ? (
                 <Preloader />
             ) : (
@@ -30,7 +30,7 @@ const HotelPage = React.memo(() => {
                     </>
                 )
             )}
-        </div>
+        </>
     )
 })
 
