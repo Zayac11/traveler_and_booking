@@ -91,8 +91,8 @@ export const PaymentMethod = React.memo((props: PaymentMethodProps) => {
                         <li>No refunds will be issued for late check-in or early check-out.</li>
                     </ol>
                     <div>
-                        By clicking the button below, I acknowledge that I have reviewed the
-                        <span className={s.link}>Privacy Statement</span> and have reviewed and accept the
+                        By clicking the button below, I acknowledge that I have reviewed the{' '}
+                        <span className={s.link}>Privacy Statement</span> and have reviewed and accept the{' '}
                         <span className={s.link}>Rules and Restrictions</span> and <span className={s.link}>Terms of Use</span>.
                     </div>
                     <Button className={s.button} type='primary' htmlType='submit'>

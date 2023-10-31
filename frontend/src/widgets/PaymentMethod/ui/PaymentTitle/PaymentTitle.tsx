@@ -15,7 +15,7 @@ export const PaymentTitle = React.memo((props: PaymentTitleProps) => {
 
     return (
         <Space size={12} className={cl(s.container, className)}>
-            {Icon && <Icon />} {title} <span className={s.description}>{description}</span>
+            {Icon && <Icon />}{title} <span className={s.description}>{description}</span>
         </Space>
     )
 })
