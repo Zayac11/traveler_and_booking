@@ -64,7 +64,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
         element: <HotelPage />,
     },
     payment: {
-        path: `${RoutePath.payment}`,
+        path: `${RoutePath.payment}:id`,
         authOnly: true,
         element: <PaymentPage />,
     },

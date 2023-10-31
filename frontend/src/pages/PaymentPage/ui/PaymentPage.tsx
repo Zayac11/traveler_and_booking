@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd'
 import React from 'react'
-import { PaymentHotel } from '../../../widgets/PaymentHotel'
+import { PaymentDetails } from '../../../widgets/PaymentDetails'
 import { PaymentMethod } from '../../../widgets/PaymentMethod'
 import s from './PaymentPage.module.scss'
 
@@ -19,7 +19,7 @@ const PaymentPage = React.memo((props: PaymentPageProps) => {
                         <PaymentMethod />
                     </Col>
                     <Col span={8}>
-                        <PaymentHotel />
+                        <PaymentDetails />
                     </Col>
                 </Row>
             </Col>

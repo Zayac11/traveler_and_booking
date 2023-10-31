@@ -1,6 +1,7 @@
 import { ShoppingOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Room } from '../../../entities/Hotel'
 import s from './RoomCard.module.scss'
 
@@ -23,9 +24,11 @@ export const RoomCard = React.memo((props: RoomCardProps) => {
                         <span>Sleeps {room.sleeps}</span>
                     </Space>
                 </div>
-                <Button className={s.button} type='primary'>
-                    Reserve suite for ${room.price}/day
-                </Button>
+                <NavLink to={'/payment/' + room._id}>
+                    <Button className={s.button} type='primary'>
+                        Reserve suite for ${room.price}/day
+                    </Button>
+                </NavLink>
             </Space>
         </div>
     )

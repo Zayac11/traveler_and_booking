@@ -5,19 +5,13 @@ import React from 'react'
 import s from './PaymentMethod.module.scss'
 import { PaymentTitle } from './PaymentTitle/PaymentTitle'
 
-interface PaymentMethodProps {
-    className?: string
-}
-
 const monthFormat = 'MM/YYYY'
 
-export const PaymentMethod = React.memo((props: PaymentMethodProps) => {
-    const { className } = props
-
+export const PaymentMethod = React.memo(() => {
     const onSubmit = (data: any) => {}
 
     return (
-        <Form layout='vertical' onFinish={onSubmit} className={s.container}>
+        <Form layout='vertical' onFinish={onSubmit}>
             <h2 className={s.title}>Secure your reservation</h2>
             <div className={s.card}>
                 <PaymentTitle Icon={UserOutlined} title='Room 1' description='2 adults, 1 double bed and 1 twin bed, Non-smoking' />

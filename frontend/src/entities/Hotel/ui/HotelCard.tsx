@@ -14,7 +14,7 @@ interface HotelCardProps extends Hotel {
 
 export const HotelCard = React.memo((props: HotelCardProps) => {
     const { className, roomsCount, daysCount, ...hotelItem } = props
-    console.log(hotelItem)
+
     return (
         <Card className={cl(className, s.container)}>
             <Row gutter={24}>
