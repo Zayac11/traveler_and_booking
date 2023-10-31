@@ -1,15 +1,30 @@
 import { Col, Row } from 'antd'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { hotelActions } from '../../../entities/Hotel'
+import { getDaysBetweenDates } from '../../../shared/lib/helpers/getDaysBetweenDates/getDaysBetweenDates'
+import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import { PaymentDetails } from '../../../widgets/PaymentDetails'
 import { PaymentMethod } from '../../../widgets/PaymentMethod'
 import s from './PaymentPage.module.scss'
 
-interface PaymentPageProps {
-    className?: string
-}
+const PaymentPage = React.memo(() => {
+    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
-const PaymentPage = React.memo((props: PaymentPageProps) => {
-    const { className } = props
+    useLayoutEffect(() => {
+        const dateOut = searchParams.get('dateOut')
+        const dateIn = searchParams.get('dateIn')
+        if (!dateOut || !dateIn) {
+            return navigate('/', { replace: true })
+        }
+        dispatch(hotelActions.setDaysCount(getDaysBetweenDates(dateIn, dateOut)))
+        dispatch(hotelActions.setCheckInDate(dateIn))
+        dispatch(hotelActions.setCheckOutDate(dateOut))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch])
 
     return (
         <div className={s.wrapper}>

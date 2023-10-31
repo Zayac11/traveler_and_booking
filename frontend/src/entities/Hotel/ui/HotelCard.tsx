@@ -1,8 +1,9 @@
 import { Button, Card, Col, Row } from 'antd'
 import cl from 'classnames'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Hotel } from '..'
+import { Hotel, getHotelFilters } from '..'
 import { HotelRate } from '../../../shared/ui/HotelRate/ui/HotelRate'
 import s from './HotelCard.module.scss'
 
@@ -14,7 +15,7 @@ interface HotelCardProps extends Hotel {
 
 export const HotelCard = React.memo((props: HotelCardProps) => {
     const { className, roomsCount, daysCount, ...hotelItem } = props
-
+    const filters = useSelector(getHotelFilters)
     return (
         <Card className={cl(className, s.container)}>
             <Row gutter={24}>
@@ -25,7 +26,8 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                     <div className={s.title}>{hotelItem.name}</div>
                     <HotelRate className={s.rate} rate={hotelItem.rate} reviewsNumber={hotelItem.reviews_number} />
                     <div className={s.description}>{hotelItem.description}</div>
-                    <NavLink to={'/hotel/' + hotelItem._id}>
+
+                    <NavLink to={`/hotel/${hotelItem._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}`}>
                         <Button className={s.link} type='primary'>
                             See availability
                         </Button>

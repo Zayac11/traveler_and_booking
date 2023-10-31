@@ -1,8 +1,9 @@
 import { ShoppingOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Room } from '../../../entities/Hotel'
+import { Room, getHotelFilters } from '../../../entities/Hotel'
 import s from './RoomCard.module.scss'
 
 interface RoomCardProps {
@@ -11,6 +12,7 @@ interface RoomCardProps {
 
 export const RoomCard = React.memo((props: RoomCardProps) => {
     const { room } = props
+    const filters = useSelector(getHotelFilters)
 
     return (
         <div className={s.container}>
@@ -24,7 +26,7 @@ export const RoomCard = React.memo((props: RoomCardProps) => {
                         <span>Sleeps {room.sleeps}</span>
                     </Space>
                 </div>
-                <NavLink to={'/payment/' + room._id}>
+                <NavLink to={`/payment/${room._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}`}>
                     <Button className={s.button} type='primary'>
                         Reserve suite for ${room.price}/day
                     </Button>

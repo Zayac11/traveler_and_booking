@@ -1,7 +1,9 @@
 import { Col } from 'antd'
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useGetCurrentHotel } from '../../../entities/Hotel'
+import React, { useLayoutEffect } from 'react'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { hotelActions, useGetCurrentHotel } from '../../../entities/Hotel'
+import { getDaysBetweenDates } from '../../../shared/lib/helpers/getDaysBetweenDates/getDaysBetweenDates'
+import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import Preloader from '../../../shared/ui/Preloader/ui/Preloader'
 import { HotelImages } from './HotelImages/HotelImages'
 import { HotelInfo } from './HotelInfo/HotelInfo'
@@ -13,6 +15,22 @@ const HotelPage = React.memo(() => {
     const { data, isLoading } = useGetCurrentHotel(id ?? '', {
         refetchOnMountOrArgChange: true,
     })
+    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    useLayoutEffect(() => {
+        const dateOut = searchParams.get('dateOut')
+        const dateIn = searchParams.get('dateIn')
+        if (!dateOut || !dateIn) {
+            return navigate('/', { replace: true })
+        }
+        dispatch(hotelActions.setDaysCount(getDaysBetweenDates(dateIn, dateOut)))
+        dispatch(hotelActions.setCheckInDate(dateIn))
+        dispatch(hotelActions.setCheckOutDate(dateOut))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch])
     return (
         <>
             {isLoading ? (

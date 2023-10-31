@@ -1,8 +1,9 @@
 import cl from 'classnames'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { getHotelFilters } from '../../../../entities/Hotel'
 import { useGetCurrentRoom } from '../../../../entities/Room'
-import { getDaysBetweenDates } from '../../../../shared/lib/helpers/getDaysBetweenDates/getDaysBetweenDates'
 import { HotelRate } from '../../../../shared/ui/HotelRate/ui/HotelRate'
 import Preloader from '../../../../shared/ui/Preloader/ui/Preloader'
 import s from './PaymentHotel.module.scss'
@@ -15,6 +16,7 @@ export const PaymentHotel = React.memo((props: PaymentHotelProps) => {
     const { className } = props
     const { id } = useParams()
     const { data, isLoading } = useGetCurrentRoom(id ?? '')
+    const filters = useSelector(getHotelFilters)
 
     return (
         <div data-testid='PaymentHotel' className={cl(className, s.container)}>
@@ -25,9 +27,9 @@ export const PaymentHotel = React.memo((props: PaymentHotelProps) => {
                     <div className={s.info}>
                         <div className={s.title}>{data.hotel.name}</div>
                         <HotelRate className={s.rate} rate={data.hotel.rate} reviewsNumber={data.hotel.reviews_number} />
-                        <div className={s.check}>Check in: Sunday, March 18, 2022</div>
-                        <div className={s.check}>Check in: Sunday, March 20, 2022</div>
-                        <div className={s.check}>{getDaysBetweenDates('2023-10-31', '2023-11-02')} night stay</div>
+                        <div className={s.check}>Check in: {new Date(filters.checkInDate ?? '').toLocaleDateString()}</div>
+                        <div className={s.check}>Check Out: {new Date(filters.checkOutDate ?? '').toLocaleDateString()}</div>
+                        <div className={s.check}>{filters.daysCount} night stay</div>
                     </div>
                 </>
             )}

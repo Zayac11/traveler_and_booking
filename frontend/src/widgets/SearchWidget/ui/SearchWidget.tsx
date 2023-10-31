@@ -22,6 +22,8 @@ export const SearchWidget = React.memo(() => {
         dispatch(hotelActions.setPlace(searchParams.get('place') ?? ''))
         dispatch(hotelActions.setRooms(Number(searchParams.get('rooms')) ?? 1))
         dispatch(hotelActions.setDaysCount(getDaysBetweenDates(dateIn, dateOut)))
+        dispatch(hotelActions.setCheckInDate(dateIn))
+        dispatch(hotelActions.setCheckOutDate(dateOut))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch])

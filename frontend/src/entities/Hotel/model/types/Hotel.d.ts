@@ -34,4 +34,6 @@ export interface HotelSchema {
     rooms?: number
     activities?: string[]
     facilities?: string[]
+    checkInDate?: string
+    checkOutDate?: string
 }
