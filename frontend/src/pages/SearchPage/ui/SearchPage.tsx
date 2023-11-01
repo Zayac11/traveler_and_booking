@@ -1,5 +1,4 @@
 import { Col, Row } from 'antd'
-import cl from 'classnames'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getHotelFilters } from '../../../entities/Hotel'
@@ -9,25 +8,20 @@ import { SearchFilters } from '../../../widgets/SearchFilters'
 import { SearchWidget } from '../../../widgets/SearchWidget'
 import s from './SearchPage.module.scss'
 
-interface SearchPageProps {
-    className?: string
-}
-
-const SearchPage = React.memo((props: SearchPageProps) => {
-    const { className } = props
+const SearchPage = React.memo(() => {
     const filters = useSelector(getHotelFilters)
-    const [searchHotels, { data: hotels, isLoading }] = useSearchHotel()
+    const [searchHotels, { data: hotels, isLoading, isUninitialized }] = useSearchHotel()
 
     useEffect(() => {
-        if (filters.place || filters.place === '') {
+        if ((filters.place || filters.place === '') && isUninitialized) {
             searchHotels({ place: filters.place })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters.place])
 
     return (
-        <div className={cl(className, s.container)}>
-            <SearchWidget />
+        <div>
+            <SearchWidget searchHotels={searchHotels} />
             <Row gutter={30}>
                 <Col span={6}>
                     <SearchFilters searchHotels={searchHotels} />

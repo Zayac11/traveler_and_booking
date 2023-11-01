@@ -1,6 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Hotel, HotelCard, getHotelFilters } from '../../../entities/Hotel'
+import { Hotel, HotelCard } from '../../../entities/Hotel'
 import Preloader from '../../../shared/ui/Preloader/ui/Preloader'
 
 interface HotelsListProps {
@@ -10,7 +9,6 @@ interface HotelsListProps {
 
 export const HotelsList = React.memo((props: HotelsListProps) => {
     const { hotels, isLoading } = props
-    const filters = useSelector(getHotelFilters)
 
     return (
         <>
@@ -20,7 +18,7 @@ export const HotelsList = React.memo((props: HotelsListProps) => {
                 </div>
             )}
             {hotels.map((item: Hotel) => (
-                <HotelCard daysCount={filters.daysCount ?? 1} roomsCount={filters.rooms ?? 1} key={item.name} {...item} />
+                <HotelCard key={item.name} {...item} />
             ))}
         </>
     )

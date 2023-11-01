@@ -1,12 +1,17 @@
 import React, { useLayoutEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { hotelActions } from '../../../entities/Hotel'
+import { SearchHotelsSchema } from '../../../features/SearchHotels'
 import { getDaysBetweenDates } from '../../../shared/lib/helpers/getDaysBetweenDates/getDaysBetweenDates'
 import { useAppDispatch } from '../../../shared/lib/hooks/redux'
 import { SearchBar } from '../../SearchBar'
 import s from './SearchWidget.module.scss'
 
-export const SearchWidget = React.memo(() => {
+interface SearchWidgetProps {
+    searchHotels: (args: SearchHotelsSchema) => void
+}
+
+export const SearchWidget = React.memo(({ searchHotels }: SearchWidgetProps) => {
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -37,7 +42,7 @@ export const SearchWidget = React.memo(() => {
                     initialGuests={Number(searchParams.get('guests')) ?? 1}
                     initialDateIn={searchParams.get('dateIn') ?? ''}
                     initialDateOut={searchParams.get('dateOut') ?? ''}
-                    onSearch={() => {}}
+                    onSearch={searchHotels}
                 />
             </div>
         </>

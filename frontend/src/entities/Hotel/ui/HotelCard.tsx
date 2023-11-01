@@ -9,12 +9,10 @@ import s from './HotelCard.module.scss'
 
 interface HotelCardProps extends Hotel {
     className?: string
-    roomsCount: number
-    daysCount: number
 }
 
 export const HotelCard = React.memo((props: HotelCardProps) => {
-    const { className, roomsCount, daysCount, ...hotelItem } = props
+    const { className, ...hotelItem } = props
     const filters = useSelector(getHotelFilters)
     return (
         <Card className={cl(className, s.container)}>
@@ -36,11 +34,9 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                     </NavLink>
                 </Col>
                 <Col span={5} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                    <div className={s.period}>
-                        {roomsCount} room, {daysCount} days
-                    </div>
+                    <div className={s.period}>lowest price for 1 day</div>
                     <div className={s.price}>${hotelItem.lowestPrice}</div>
-                    <div className={s.taxes}>Includes taxes and fees</div>
+                    <div className={s.taxes}>Without taxes and fees</div>
                 </Col>
             </Row>
         </Card>

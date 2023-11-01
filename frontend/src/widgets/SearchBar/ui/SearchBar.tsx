@@ -72,6 +72,9 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
             }
         } else dateOut = new Date(dateIn.setDate(dateIn.getDate() + 1))
         dispatch(hotelActions.setPlace(data.place))
+        const params = new URLSearchParams(searchParams.toString())
+        params.set('place', data.place)
+        setSearchParams(params)
         onSearch({
             place: data.place,
             dateIn: data.dateIn ?? String(new Date()),
