@@ -7,6 +7,7 @@ const schema = new Schema({
   description: {type: String, required: true},
   hotel: { type: Types.ObjectId, ref: 'Hotel' },
   price: {type: Number, required: true},
+  trips: [{type: Types.ObjectId, ref: 'Trip'}],
 })
 
 module.exports = model('Room', schema)

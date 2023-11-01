@@ -4,6 +4,7 @@ import { HotelPage } from '../../../pages/HotelPage'
 import { LoginPage } from '../../../pages/LoginPage'
 import { MainPage } from '../../../pages/MainPage'
 import { PaymentPage } from '../../../pages/PaymentPage'
+import { ProfilePage } from '../../../pages/ProfilePage'
 import { RegisterPage } from '../../../pages/RegisterPage'
 import { SearchPage } from '../../../pages/SearchPage'
 
@@ -12,7 +13,7 @@ export type AppRouteProps = RouteProps & {
     unAuthOnly?: boolean
 }
 
-export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search' | 'hotel' | 'payment'
+export type AppRoutes = 'main_page' | 'login' | 'register' | 'notFound' | 'search' | 'hotel' | 'payment' | 'profile'
 
 export const RoutePath: Record<AppRoutes, string> = {
     main_page: '/',
@@ -21,6 +22,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     search: '/search/', // + params
     hotel: '/hotel/', // + id
     payment: '/payment/', // + params
+    profile: '/profile',
     notFound: '*',
 }
 
@@ -67,6 +69,15 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
         path: `${RoutePath.payment}:id`,
         authOnly: true,
         element: <PaymentPage />,
+    },
+    profile: {
+        path: `${RoutePath.profile}`,
+        authOnly: true,
+        element: (
+            <Col xxl={{ offset: 4, span: 16 }} offset={2} span={20}>
+                <ProfilePage />
+            </Col>
+        ),
     },
     notFound: {
         path: RoutePath.notFound,
