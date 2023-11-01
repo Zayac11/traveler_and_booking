@@ -1,3 +1,4 @@
+import { Empty } from 'antd'
 import React from 'react'
 import { Hotel, HotelCard } from '../../../entities/Hotel'
 import Preloader from '../../../shared/ui/Preloader/ui/Preloader'
@@ -17,9 +18,11 @@ export const HotelsList = React.memo((props: HotelsListProps) => {
                     <Preloader />
                 </div>
             )}
-            {hotels.map((item: Hotel) => (
-                <HotelCard key={item.name} {...item} />
-            ))}
+            {hotels.length > 0 ? (
+                hotels.map((item: Hotel) => <HotelCard key={item.name} {...item} />)
+            ) : (
+                <Empty description={'There are no hotels'} />
+            )}
         </>
     )
 })

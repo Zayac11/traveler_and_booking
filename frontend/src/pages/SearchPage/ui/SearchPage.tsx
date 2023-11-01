@@ -28,7 +28,7 @@ const SearchPage = React.memo(() => {
                 </Col>
                 <Col span={18}>
                     <h2 className={s.title}>
-                        {filters.place}: {hotels?.length} search results found
+                        {filters.place}: {hotels?.length ?? 0} search results found
                     </h2>
                     <HotelsList isLoading={isLoading} hotels={hotels ?? []} />
                 </Col>
