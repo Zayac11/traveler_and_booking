@@ -27,7 +27,9 @@ export const HotelCard = React.memo((props: HotelCardProps) => {
                     <HotelRate className={s.rate} rate={hotelItem.rate} reviewsNumber={hotelItem.reviews_number} />
                     <div className={s.description}>{hotelItem.description}</div>
 
-                    <NavLink to={`/hotel/${hotelItem._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}`}>
+                    <NavLink
+                        to={`/hotel/${hotelItem._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}&rooms=${filters.rooms}`}
+                    >
                         <Button className={s.link} type='primary'>
                             See availability
                         </Button>

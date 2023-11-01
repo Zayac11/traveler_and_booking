@@ -11,16 +11,18 @@ export const PaymentPrice = React.memo(() => {
     const { id } = useParams()
     const { data } = useGetCurrentRoom(id ?? '')
 
-    const taxes = (data?.price ?? 0) * 0.13
-    const roomPrice = (filters.daysCount ?? 1) * (data?.price ?? 0)
+    const taxes = Number(((data?.price ?? 0) * 0.13 * (filters.rooms ?? 1)).toFixed(2))
+    const roomPrice = (filters.daysCount ?? 1) * (data?.price ?? 0) * (filters.rooms ?? 1)
 
     return (
         <div className={s.container}>
             <div className={s.header}>Price Details</div>
             <div className={s.info}>
                 <Space className={s.period}>
-                    <div>1 room X {filters.daysCount} nights</div>
-                    <div>$ {data?.price}</div>
+                    <div>
+                        {filters.rooms ?? 1} room X {filters.daysCount} nights
+                    </div>
+                    <div>$ {(data?.price ?? 1) * (filters.rooms ?? 1)}</div>
                 </Space>
                 <Space className={s.period}>
                     <div>Tax and service fees</div>

@@ -13,7 +13,7 @@ export const PaymentDetails = React.memo((props: PaymentDetailsProps) => {
     return (
         <div className={s.container}>
             <PaymentHotel />
-            <PaymentPrice roomPrice={228} />
+            <PaymentPrice />
         </div>
     )
 })

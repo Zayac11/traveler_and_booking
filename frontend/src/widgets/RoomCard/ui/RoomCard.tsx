@@ -26,7 +26,7 @@ export const RoomCard = React.memo((props: RoomCardProps) => {
                         <span>Sleeps {room.sleeps}</span>
                     </Space>
                 </div>
-                <NavLink to={`/payment/${room._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}`}>
+                <NavLink to={`/payment/${room._id}?dateIn=${filters.checkInDate}&dateOut=${filters.checkOutDate}&rooms=${filters.rooms}`}>
                     <Button className={s.button} type='primary'>
                         Reserve suite for ${room.price}/day
                     </Button>

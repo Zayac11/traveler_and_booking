@@ -4,6 +4,7 @@ import { RangePickerProps } from 'antd/es/date-picker'
 import dayjs from 'dayjs'
 import React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { hotelActions } from '../../../entities/Hotel'
 import { GuestsPopover } from './GuestsPopover/GuestsPopover'
 import s from './SearchBar.module.scss'
@@ -32,6 +33,7 @@ const disabledOutDay: RangePickerProps['disabledDate'] = (current) => current &&
 export const SearchBar = React.memo((props: SearchBarProps) => {
     const { onSearch, initialGuests = 1, initialRooms = 1, initialPlace = '', initialDateIn = '', initialDateOut = '' } = props
     const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams()
     const [guests, setGuests] = useState(initialGuests)
     const [rooms, setRooms] = useState(initialRooms)
     const [guestsCount, setGuestsCount] = useState(`Guests ${initialGuests}, rooms ${initialRooms}`)
@@ -44,8 +46,13 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
             setRooms(rooms)
             setGuestsCount(newString)
             form.setFieldValue('guestsCount', newString)
+            const params = new URLSearchParams(searchParams.toString())
+            params.set('rooms', String(rooms))
+            params.set('guests', String(guests))
+            setSearchParams(params)
+            dispatch(hotelActions.setRooms(rooms))
         },
-        [form]
+        [dispatch, form, searchParams, setSearchParams]
     )
 
     const handleSearch = (data: SearchBarSchema) => {

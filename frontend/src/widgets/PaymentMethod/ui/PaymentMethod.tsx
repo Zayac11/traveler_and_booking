@@ -2,6 +2,8 @@ import { UserOutlined, WalletOutlined } from '@ant-design/icons'
 import { Button, DatePicker, Form, Input, Space } from 'antd'
 import cl from 'classnames'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { getHotelFilters } from '../../../entities/Hotel'
 import s from './PaymentMethod.module.scss'
 import { PaymentTitle } from './PaymentTitle/PaymentTitle'
 
@@ -9,12 +11,12 @@ const monthFormat = 'MM/YYYY'
 
 export const PaymentMethod = React.memo(() => {
     const onSubmit = (data: any) => {}
-
+    const filters = useSelector(getHotelFilters)
     return (
         <Form layout='vertical' onFinish={onSubmit}>
             <h2 className={s.title}>Secure your reservation</h2>
             <div className={s.card}>
-                <PaymentTitle Icon={UserOutlined} title='Room 1' description='2 adults, 1 double bed and 1 twin bed, Non-smoking' />
+                <PaymentTitle Icon={UserOutlined} title={`${filters.rooms ?? 1} room`} />
                 <div className={s.info}>
                     <Space className={s.space} size={20}>
                         <Form.Item

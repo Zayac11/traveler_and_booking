@@ -22,6 +22,7 @@ const PaymentPage = React.memo(() => {
         dispatch(hotelActions.setDaysCount(getDaysBetweenDates(dateIn, dateOut)))
         dispatch(hotelActions.setCheckInDate(dateIn))
         dispatch(hotelActions.setCheckOutDate(dateOut))
+        dispatch(hotelActions.setRooms(Number(searchParams.get('rooms')) ?? 1))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch])
