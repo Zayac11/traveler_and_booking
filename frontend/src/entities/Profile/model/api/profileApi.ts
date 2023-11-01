@@ -1,6 +1,6 @@
 import { rtkApi } from '../../../../shared/config/api/api'
 import { profileActions } from '../slice/profileSlice'
-import { Profile } from '../types/Profile'
+import { Profile, TripSchema } from '../types/Profile'
 
 export const profileApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -21,7 +21,22 @@ export const profileApi = rtkApi.injectEndpoints({
                 }
             },
         }),
+        createTrip: build.mutation<null, TripSchema>({
+            query: (schema) => ({
+                url: 'api/trip',
+                method: 'POST',
+                body: {
+                    price: schema.price,
+                    rooms: JSON.stringify(schema.rooms),
+                    check_in_date: schema.check_in_date,
+                    check_out_date: schema.check_out_date,
+                    hotel: schema.hotel,
+                },
+            }),
+            invalidatesTags: ['Profile'],
+        }),
     }),
 })
 
 export const useGetProfile = profileApi.useFetchProfileDataQuery
+export const useCreateTrip = profileApi.useCreateTripMutation

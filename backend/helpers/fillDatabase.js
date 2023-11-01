@@ -20,6 +20,7 @@ async function fillDatabase() {
       image: ['https://marinshotels.ru/upload/slides/max_6411c18221451.webp', 'https://marinshotels.ru/upload/slides/max_641176ae05ef2.webp', 'https://marinshotels.ru/upload/slides/max_641176e20e859.webp'],
       reviews_number: 6272,
       rate: 4.5,
+      trips: [],
     });
     const savedHotel = await hotel.save();
 
@@ -62,6 +63,7 @@ async function fillDatabase() {
       description: 'Уютный номер для одного или ребенка',
       price: 80,
       hotel: savedHotel._id,
+      trips: [],
     });
     await room.save();
 
@@ -72,6 +74,7 @@ async function fillDatabase() {
       description: 'Уютный номер для двоих с двухъярусной кроватью',
       price: 80,
       hotel: savedHotel._id,
+      trips: [],
     });
     await room2.save();
 
@@ -82,6 +85,7 @@ async function fillDatabase() {
       description: 'Уютный номер для двоих с двухспальной кроватью',
       price: 100,
       hotel: savedHotel._id,
+      trips: [],
     });
     await room3.save();
 
@@ -91,7 +95,7 @@ async function fillDatabase() {
     savedHotel.facilities = [facility_business._id, facility_conditioning._id, facility_parking._id, facility_wifi._id]
     savedHotel.types = [type._id]
 
-    savedHotel.save()
+    await savedHotel.save()
 
     console.log('Данные успешно добавлены в базу данных.');
   } catch (error) {

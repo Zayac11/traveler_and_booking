@@ -2,6 +2,8 @@ const {Router} = require('express')
 const auth = require('../middleware/auth.middleware')
 const User = require('../models/User')
 const Trip = require('../models/Trip')
+const Hotel = require('../models/Hotel')
+const Room = require('../models/Room')
 const router = Router()
 const bodyParser = require('body-parser')
 
@@ -29,23 +31,29 @@ router.post(
   '/trip',
   [jsonParser, auth],
   async (req, res) => {
-  try {
+    try {
+    const currentRoom = await Room.findById(JSON.parse(req.body.rooms)[0])
+    const currentHotel = await Hotel.findById(req.body.hotel)
     const user = await User.findById(req.user.userId)
-    if (!user) {
+    if (!user || !currentHotel || !currentRoom) {
       return res.status(401).json({message: 'Unauthorize'})
     }
     const trip = new Trip({
-      rooms: req.body.rooms,
+      rooms: JSON.parse(req.body.rooms),
       check_in_date: req.body.check_in_date,
       check_out_date: req.body.check_out_date,
       price: req.body.price,
-      user: user._id
+      hotel: req.body.hotel,
+      user: user._id,
      })
-
     await trip.save()
 
-    console.log(req.body)
-    
+    currentHotel.trips = [...currentHotel.trips, trip._id]
+    await currentHotel.save()
+    currentRoom.trips = [...currentRoom.trips, trip._id]
+    await currentRoom.save()
+
+    res.json(null)
   } catch (e) {
     console.error(e)
     res.status(500).json({ message: 'Something went wrong' })

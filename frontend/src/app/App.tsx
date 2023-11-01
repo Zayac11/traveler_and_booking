@@ -1,4 +1,4 @@
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, notification } from 'antd'
 import { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
