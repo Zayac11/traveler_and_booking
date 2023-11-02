@@ -6,6 +6,7 @@ import lakeside from '../../../shared/assets/images/lakeside.webp'
 import oculous from '../../../shared/assets/images/oculous.webp'
 import recce from '../../../shared/assets/images/recce.webp'
 import { VacationCard } from '../../../widgets/MainPlaces/ui/VacationCard/VacationCard'
+import { TripsList } from '../../../widgets/TripsList'
 import s from './ProfilePage.module.scss'
 
 interface ProfileProps {
@@ -17,8 +18,10 @@ const ProfilePage = React.memo((props: ProfileProps) => {
 
     return (
         <div className={cl(className, s.container)}>
-            <h3 className={s.title}>Your trips</h3>
-
+            <Col span={18} offset={3} style={{ marginBottom: 100 }}>
+                <h3 className={s.title}>Your trips</h3>
+                <TripsList />
+            </Col>
             <section className={s.history}>
                 <h3 className={s.title}>Based on your history</h3>
                 <Row gutter={20}>
