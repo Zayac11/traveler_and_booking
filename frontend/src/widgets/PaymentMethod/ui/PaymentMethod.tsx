@@ -102,7 +102,7 @@ export const PaymentMethod = React.memo(() => {
                                 <DatePicker format={monthFormat} picker='month' />
                             </Form.Item>
                             <Form.Item name='cvv' label='Security code' rules={[{ required: true, message: 'Security code is required' }]}>
-                                <Input className={s.input} type='tel' />
+                                <Input maxLength={3} className={s.input} type='password' />
                             </Form.Item>
                         </Space>
                     </div>

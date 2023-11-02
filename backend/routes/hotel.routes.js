@@ -8,6 +8,7 @@ const Type = require('../models/Type')
 const router = Router()
 const bodyParser = require('body-parser')
 const getNamesOfObjects = require('../helpers/getNamesOfObjects')
+const getModelData = require('../helpers/getModelData')
 const getAttractions = require('../helpers/getAttractions')
 
 
@@ -29,7 +30,7 @@ router.get(
     const facilities = await Facility.find()
     const attractions = await Attraction.find()
 
-    const roomsOfCurrentHotel = rooms.filter((room) => hotel.rooms.includes(room._id)).map((room) => ({
+    const roomsOfCurrentHotel = getModelData(rooms, hotel.rooms).map((room) => ({
       _id: room.id,
       image: room.image,
       name: room.name,
@@ -37,10 +38,10 @@ router.get(
       description: room.description,
       price: room.price
     }))
-    const typesOfCurrentHotel = getNamesOfObjects(types.filter((type) => hotel.types.includes(type._id)))
-    const activitiesOfCurrentHotel = getNamesOfObjects(activities.filter((activity) => hotel.activities.includes(activity._id)))
-    const facilitiesOfCurrentHotel = getNamesOfObjects(facilities.filter((facility) => hotel.facilities.includes(facility._id)))
-    const attractionsOfCurrentHotel = getAttractions(attractions.filter((attraction) => hotel.attractions.includes(attraction._id)), id)
+    const typesOfCurrentHotel = getNamesOfObjects(getModelData(types, hotel.types))
+    const activitiesOfCurrentHotel = getNamesOfObjects(getModelData(activities, hotel.activities))
+    const facilitiesOfCurrentHotel = getNamesOfObjects(getModelData(facilities, hotel.facilities))
+    const attractionsOfCurrentHotel = getAttractions(getModelData(attractions, hotel.attractions), id)
     const lowestPrice = roomsOfCurrentHotel.reduce((acc, cur) => {
       if (acc < 0 || cur.price < acc) return cur.price
       return acc

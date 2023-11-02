@@ -6,6 +6,7 @@ const Hotel = require('../models/Hotel')
 const Room = require('../models/Room')
 const router = Router()
 const bodyParser = require('body-parser')
+const getModelData = require('../helpers/getModelData')
 
 const jsonParser = bodyParser.json()
 
@@ -19,8 +20,22 @@ router.get(
     if (!user) {
       return res.status(401).json({message: 'Unauthorize'})
     }
-
-    res.json({ email: user.email, username: user.username })
+    const trips = await Trip.find()
+    const hotel = await Hotel.find()
+    const rooms = await Room.find()
+    const tripsOfCurrentUser = getModelData(trips, user.trips)
+    const filledTrips = tripsOfCurrentUser.map((item) => {
+      return (
+        {
+          check_in_date: item.check_in_date,
+          check_out_date: item.check_out_date,
+          price: item.price,
+          hotel: getModelData(hotel, item.hotel.toString())[0],
+          rooms: getModelData(rooms, item.rooms),
+        }
+      )
+    })
+    res.json({ email: user.email, username: user.username, trips: filledTrips })
   } catch (e) {
     console.error(e)
     res.status(500).json({ message: 'Something went wrong' })
@@ -50,6 +65,8 @@ router.post(
 
     currentHotel.trips = [...currentHotel.trips, trip._id]
     await currentHotel.save()
+    user.trips = [...user.trips, trip._id]
+    await user.save()
     currentRoom.trips = [...currentRoom.trips, trip._id]
     await currentRoom.save()
 
